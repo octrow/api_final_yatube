@@ -12,15 +12,17 @@ from .serializers import (
 )
 from posts.models import Group, Post, User
 
+
 def get_post_or_404(post_id):
     return get_object_or_404(Post, id=post_id)
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     permission_classes = (IsOwnerOrReadOnly,)
-    
+
     def get_post(self):
-        return get_object_or_404(Post, id=self.kwargs.get('post_id'))
+        return get_object_or_404(Post, id=self.kwargs.get("post_id"))
 
     def get_queryset(self):
         return self.get_post().comments.all()
