@@ -10,7 +10,7 @@ from .serializers import (
     GroupSerializer,
     PostSerializer,
 )
-from posts.models import Group, Post, User
+from posts.models import Group, Post
 
 
 def get_post_or_404(post_id):
