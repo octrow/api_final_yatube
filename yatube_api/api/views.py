@@ -13,10 +13,6 @@ from .serializers import (
 from posts.models import Group, Post
 
 
-def get_post_or_404(post_id):
-    return get_object_or_404(Post, id=post_id)
-
-
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     permission_classes = (IsOwnerOrReadOnly,)
@@ -42,7 +38,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Group.objects.all().prefetch_related("posts")
+    queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 
