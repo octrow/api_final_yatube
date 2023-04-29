@@ -14,7 +14,6 @@ routerv1.register(
 
 
 urlpatterns = [
-    path("", include(routerv1.urls)),
-    path("", include("djoser.urls")),
-    path("", include("djoser.urls.jwt")),
+    path("v1/", include(routerv1.urls)),
+    path("v1/", include("djoser.urls.jwt")),
 ]

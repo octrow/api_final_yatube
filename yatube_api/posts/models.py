@@ -33,6 +33,7 @@ class Post(models.Model):
     )
 
     class Meta:
+        ordering = ("pub_date",)
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
 
@@ -74,6 +75,10 @@ class Follow(models.Model):
         constraints = (
             models.UniqueConstraint(
                 fields=("user", "following"), name="unique_follow"
+            ),
+            models.CheckConstraint(
+                name="%(app_label)s_%(class)s_prevent_self_follow",
+                check=~models.Q(user=models.F("following")),
             ),
         )
 
